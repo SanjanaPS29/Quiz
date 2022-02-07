@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderStyle = styled.div`
   display: flex;
   background-color: #218380;
-  height: 80px;
+  height: 6em;
   align-items: center;
   color: #fff;
   justify-content: space-between;
@@ -13,10 +13,7 @@ export const HeaderStyle = styled.div`
     text-decoration: none;
     color: #fff;
   }
-`;
 
-export const View = styled.div`
-  color: #fff;
 `;
 
 export const Time = styled.div`
@@ -24,3 +21,15 @@ export const Time = styled.div`
   margin-right:1em;
 
 `;
+
+export const HeaderLeft=styled.div`
+  align-items:center;
+  display:flex;
+  flex-direction:row;
+  
+  div{
+   
+  }
+
+}
+`

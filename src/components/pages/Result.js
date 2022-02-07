@@ -13,7 +13,8 @@ function Result({ highScore }) {
   const [name, setName] = useState(null);
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
-
+  const [text, setText] = useState(false);
+  let flag=false;
   const onSubmit = (e) => {
     e.preventDefault();
     if (name != null || "") {
@@ -22,11 +23,26 @@ function Result({ highScore }) {
       if (data == null) {
         localStorage.setItem("users", "[]");
       }
+      function addNewUser() {
+        old.push(user);
+        localStorage.setItem("users", JSON.stringify(old));
+        navigate("/highscore");
+      }
       const old = JSON.parse(localStorage.getItem("users"));
-      old.push(user);
-
-      localStorage.setItem("users", JSON.stringify(old));
-      navigate("/highscore");
+      // check if the user already exist
+      if (Object.keys(old).length === 0) {
+        addNewUser();
+      } else {
+        old.forEach((element) => {
+          if (element.name === name) {
+           flag=true;
+           setText(true);
+          }
+        });
+      }
+      if (!flag) {
+        addNewUser();
+      }
     }
   };
 
@@ -36,7 +52,7 @@ function Result({ highScore }) {
 
   useEffect(() => {
     setShow(true);
-  }, []);
+  }, [text]);
 
   return (
     <>
@@ -44,7 +60,9 @@ function Result({ highScore }) {
         <Content>
           <form>
             <h1>All done!</h1>
-
+            <h4 style={{ display: text ? "block" : "none", color: "red" }}>
+              UserName already exist . Please choose another name.
+            </h4>
             <ParaStyle>Your final score is {highScore}.</ParaStyle>
             <label>Enter initails:</label>
             <InputStyle
@@ -63,3 +81,42 @@ function Result({ highScore }) {
 }
 
 export default Result;
+
+
+
+/*
+const onSubmit = (e) => {
+    e.preventDefault();
+    if (name != null || "") {
+      const user = { name: name, score: highScore };
+      const data = localStorage.users;
+      if (data == null) {
+        localStorage.setItem("users", "[]");
+      }
+  
+      function addNewUser(){
+        old.push(user);
+        localStorage.setItem("users", JSON.stringify(old));
+      
+      }
+      const old = JSON.parse(localStorage.getItem("users"));
+      // check if the user already exist
+      if (Object.keys(old).length === 0) {
+        addNewUser();
+      } else {
+        old.forEach((element) => {
+          if (element.name === name) { 
+            flag=true;
+          }
+        });
+      }
+      if (!flag) {
+        console.log(flag)
+        navigate("/highscore");
+      }
+    }
+
+  
+  };
+
+*/

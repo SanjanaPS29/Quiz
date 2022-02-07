@@ -51,8 +51,14 @@ function Question({
         setScore(score + 1);
       }, 200);
     } else {
-      setTimer(time - 10);
-      setCorrect("Incorrect!");
+      setCorrect("Incorrect!"); 
+        setTimer(time - 10);
+     
+      setTimeout(()=>{
+        set();
+      },200)
+    
+     
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useContext} from "react";
-import { HeaderStyle, Time } from "../styles/Header.style";
+import { HeaderStyle, Time ,HeaderLeft} from "../styles/Header.style";
 import { FaHandPointLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TimeContext } from "./Questions";
@@ -10,10 +10,17 @@ function Header() {
   return (
     <div>
       <HeaderStyle>
+        <HeaderLeft>
+          <div>
         <Link to="/highscore">
           View HighScores
+          </Link>
+          </div>
+          <div style={{paddingTop:10, paddingLeft:5 }}>
           <FaHandPointLeft size={20} />
-        </Link>
+          </div>
+          </HeaderLeft>
+         
         <Time>Time: {time}</Time>
       </HeaderStyle>
     </div>
