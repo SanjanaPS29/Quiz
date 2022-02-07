@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useContext } from "react";
-import { Container,Content } from "../styles/Container.style";
+import { Container,Content,ParaStyle } from "../styles/Container.style";
 import { OptionStyle, ListStyle, HiddenStyle } from "../styles/Question.style";
 import { questions } from "../../quiz";
 
@@ -17,8 +17,6 @@ function Question({
 
  
   const [correct, setCorrect] = useState();
-
-  const [show, setShow] = useState(true);
   const [question, setQuestion] = useState(null);
 
 
@@ -33,7 +31,8 @@ function Question({
   };
 useEffect(()=>{
   if(time<=0){
-    set();
+    setStop(true);
+    setTimer(null);
   }
 
 },[time])
@@ -48,20 +47,17 @@ function set(){
       setTimer(null);
    setStop(true);
     }
-    // else{
-    //   setTimer(50);
-    // }
 }
   const checkAnswer = (opt) => {
     const choose = opt.option;
 
      if (choose == question.answer) {
       setCorrect("Correct!");
-      setScore(score + 1);
+      
    
       const ti=setTimeout(() => {
         set();
-      
+        setScore(score + 1);
       }, 200);
      
     } else {
@@ -85,7 +81,7 @@ function set(){
           </OptionStyle>
         ))}
         <hr />
-        <p>{correct}</p>
+        <ParaStyle>{correct}</ParaStyle>
       </ListStyle>
       </Content>
 

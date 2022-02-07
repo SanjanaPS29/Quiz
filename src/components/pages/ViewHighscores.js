@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect ,useState} from "react/cjs/react.development";
-import { Container ,Content} from "../styles/Container.style";
-import { List } from "../styles/ViewHighscores.style";
+import { Container,ButtonStyle} from "../styles/Container.style";
+import { List,Content } from "../styles/ViewHighscores.style";
 import { Link,useNavigate } from "react-router-dom";
 import Header from "./Header";
 
@@ -30,14 +30,14 @@ setUsername(JSON.parse(u));
         <ul>
           {usernames?.map((user, index) => (
             <List key={index}>
-              {index + 1}. {user.name} - {user.score}
+               {user.name} - {user.score}
             </List>
           ))}
         </ul>
         <Link to="/">
-          <button>Go Back</button>
+          <ButtonStyle>Go Back</ButtonStyle>
         </Link>{" "}
-        <button onClick={()=>clearHighScore()}>Clear Highscores</button>
+        <ButtonStyle onClick={()=>clearHighScore()}>Clear Highscores</ButtonStyle>
       </Content>
     </Container>
   );

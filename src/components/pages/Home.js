@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Content } from "../styles/Container.style";
+import { Container, Content,ButtonStyle } from "../styles/Container.style";
 import Questions from "./Questions";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
@@ -25,7 +25,7 @@ function Home() {
           Keep in mind that incorrect answers will penalize your score/time by
           ten seconds!
         </p>
-        <button onClick={(e) => handleClick(e)}>Start Quiz</button>
+        <ButtonStyle onClick={(e) => handleClick(e)}>Start Quiz</ButtonStyle>
       </Content>
      
     </Container>

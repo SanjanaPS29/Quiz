@@ -1,16 +1,18 @@
 import React from "react";
 import { useState, useEffect} from "react";
-import { Content,Container } from "../styles/Container.style";
+import { Container,ButtonStyle,InputStyle,ParaStyle } from "../styles/Container.style";
 import { useNavigate } from "react-router-dom";
+import { Content } from "../styles/ViewHighscores.style";
 
 function Result({highScore}) {
  
-   const [name, setName] = useState("");
+   const [name, setName] = useState(null);
    const navigate = useNavigate();
    const[show,setShow]=useState(true);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(name!= null || ''){
 const user={"name":name,"score":highScore};
 const data=localStorage.users;
 if(data==null){
@@ -20,9 +22,8 @@ const old=JSON.parse(localStorage.getItem("users"))
 old.push(user);
 
 localStorage.setItem("users",JSON.stringify(old))
-
-
      navigate("/highscore");
+  }
   };
 const goHome=()=>{
   navigate("/");
@@ -46,18 +47,18 @@ const goHighscores=()=>{
     <Container style={{ display:show?"block":"none" }}>
       <Content>
         <form>
-          <h2>All done!</h2>
+          <h1>All done!</h1>
 
-          <p>Your final score is {highScore}.</p>
+          <ParaStyle>Your final score is {highScore}.</ParaStyle>
           <label>Enter initails:</label>
-          <input
+          <InputStyle
             type="text"
             name="name"
             onChange={(e) => {
               onChange(e);
             }}
           />
-          <button onClick={(e)=>onSubmit(e)}>Submit</button>
+          <ButtonStyle onClick={(e)=>onSubmit(e)}>Submit</ButtonStyle>
         </form>
       </Content>
     </Container>
