@@ -24,7 +24,6 @@ function Questions() {
   return (
     <Container>
       <TimeContext.Provider value={time}>
-        {" "}
         <Header />
       </TimeContext.Provider>
       <div>

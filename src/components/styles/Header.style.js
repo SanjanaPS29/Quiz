@@ -21,4 +21,6 @@ export const View = styled.div`
 
 export const Time = styled.div`
   flex-direction: right;
+  margin-right:1em;
+
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   align-items: center;
+  justify-content:center;
 `;
 
 export const Content = styled.div`
@@ -10,20 +11,24 @@ export const Content = styled.div`
   border: 3px solid #d5dbd6;
   border-radius: 25px;
   padding: 0px;
-  box-shadow: 8px 5px hsl(0deg 2% 81% / 36%), 10px 5px hsl(0deg 13% 82% / 0%);
+
+  // box-shadow: 8px 5px hsl(0deg 3% 19% / 36%), 10px 5px hsl(0deg 13% 82% / 0%);
+
+  box-shadow: 10px 4px 5px #d5dbd6;
   margin-inline: auto;
 
   margin-top: 5em;
   padding: 2em;
   p {
     font-weight: 500;
-
     font-family: Verdana;
     font-size: 16px;
     font-height: normal;
     font-style: normal;
     color: #000000;
+
   }
+ 
 `;
 
 export const ParaStyle = styled.p`
@@ -50,4 +55,6 @@ export const InputStyle = styled.input`
   padding: 1em 0.5em;
   border: 1px solid #d5dbd6;
   margin-inline: 0.5em;
+
+
 `;

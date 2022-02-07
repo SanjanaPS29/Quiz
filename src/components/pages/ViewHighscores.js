@@ -1,33 +1,37 @@
 import React from "react";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useState ,useEffect} from "react/cjs/react.development";
 import { Container, ButtonStyle } from "../styles/Container.style";
-import { List, Content } from "../styles/ViewHighscores.style";
-import { Link, useNavigate } from "react-router-dom";
+import { List, HighScoreContent } from "../styles/ViewHighscores.style";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function ViewHighscores() {
-  const navigate = useNavigate();
+
   const [usernames, setUsername] = useState();
 
   const clearHighScore = () => {
     localStorage.clear();
-
-    navigate("/highscore");
+  getUsers();
   };
-  useEffect(() => {
+
+  function getUsers(){
     const u = localStorage.getItem("users");
     setUsername(JSON.parse(u));
-  }, []);
+  }
+ 
+  useEffect(() => {
+    getUsers();
+  },[]);
 
   return (
     <Container>
       <Header />
-      <Content>
+      <HighScoreContent>
         <h1>Highscores</h1>
         <ul>
           {usernames?.map((user, index) => (
             <List key={index}>
-              {user.name} - {user.score}
+           {index+1}.  {user.name} - {user.score}
             </List>
           ))}
         </ul>
@@ -37,7 +41,7 @@ function ViewHighscores() {
         <ButtonStyle onClick={() => clearHighScore()}>
           Clear Highscores
         </ButtonStyle>
-      </Content>
+      </HighScoreContent>
     </Container>
   );
 }
