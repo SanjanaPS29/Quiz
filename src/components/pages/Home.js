@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Container, Content,ButtonStyle } from "../styles/Container.style";
-import Questions from "./Questions";
+import React from "react";
+import { Container, Content, ButtonStyle } from "../styles/Container.style";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function Home() {
-  const [show, setShow] = useState();
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -14,7 +12,7 @@ function Home() {
 
   return (
     <Container>
-    <Header/>
+      <Header />
       <Content>
         <h2>Coding Quiz Challenge</h2>
         <p>
@@ -27,7 +25,6 @@ function Home() {
         </p>
         <ButtonStyle onClick={(e) => handleClick(e)}>Start Quiz</ButtonStyle>
       </Content>
-     
     </Container>
   );
 }

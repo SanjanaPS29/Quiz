@@ -1,8 +1,6 @@
-import React, { useEffect, useState,useContext } from "react";
-import { Container,Content,ParaStyle } from "../styles/Container.style";
-import { OptionStyle, ListStyle, HiddenStyle } from "../styles/Question.style";
-import { questions } from "../../quiz";
-
+import React, { useEffect, useState } from "react";
+import { Content, ParaStyle } from "../styles/Container.style";
+import { OptionStyle, ListStyle} from "../styles/Question.style";
 
 function Question({
   data,
@@ -12,13 +10,10 @@ function Question({
   setQuestionNumber,
   questionNumber,
   setTimer,
-  time
+  time,
 }) {
-
- 
   const [correct, setCorrect] = useState();
   const [question, setQuestion] = useState(null);
-
 
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
@@ -29,49 +24,39 @@ function Question({
       callback();
     }, duration);
   };
-useEffect(()=>{
-  if(time<=0){
-    setStop(true);
-    setTimer(null);
-  }
-
-},[time])
-
-
-
-function set(){
-     setQuestionNumber((prev) => prev + 1);
-        setCorrect(null);
-        
-     if(data[questionNumber] == null){
+  useEffect(() => {
+    if (time <= 0) {
+      setStop(true);
       setTimer(null);
-   setStop(true);
     }
-}
+  }, [time]);
+
+  function set() {
+    setQuestionNumber((prev) => prev + 1);
+    setCorrect(null);
+
+    if (data[questionNumber] == null) {
+      setTimer(null);
+      setStop(true);
+    }
+  }
   const checkAnswer = (opt) => {
     const choose = opt.option;
 
-     if (choose == question.answer) {
+    if (choose === question.answer) {
       setCorrect("Correct!");
-      
-   
-      const ti=setTimeout(() => {
+
+      setTimeout(() => {
         set();
         setScore(score + 1);
       }, 200);
-     
     } else {
-    setTimer(time-10)
+      setTimer(time - 10);
       setCorrect("Incorrect!");
-           
     }
-
   };
- 
-
 
   return (
-  
     <Content>
       <h2>{question?.questionText}</h2>
       <ListStyle>
@@ -83,9 +68,7 @@ function set(){
         <hr />
         <ParaStyle>{correct}</ParaStyle>
       </ListStyle>
-      </Content>
-
-    
+    </Content>
   );
 }
 
