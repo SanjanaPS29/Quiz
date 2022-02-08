@@ -40,9 +40,9 @@ function Result({ highScore }) {
           }
         });
       }
-      if (!flag) {
-        addNewUser();
-      }
+      // if (!flag) {
+      //   addNewUser();
+      // }
     }
   };
 
