@@ -17,6 +17,7 @@ function Result({ highScore }) {
   let flag=false;
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("sddsd")
     if (name != null || "") {
       const user = { name: name, score: highScore };
       const data = localStorage.users;
@@ -34,15 +35,19 @@ function Result({ highScore }) {
         addNewUser();
       } else {
         old.forEach((element) => {
-          if (element.name === name) {
+          if (element.name.toUpperCase() === name.toUpperCase()) {
            flag=true;
            setText(true);
           }
+          setTimeout(() => {
+            setText(false);
+          }, 1000);
         });
+         if (!flag) {
+        addNewUser();
       }
-      // if (!flag) {
-      //   addNewUser();
-      // }
+      }
+     
     }
   };
 
@@ -60,9 +65,7 @@ function Result({ highScore }) {
         <Content>
           <form>
             <h1>All done!</h1>
-            <h4 style={{ display: text ? "block" : "none", color: "red" }}>
-              UserName already exist . Please choose another name.
-            </h4>
+           
             <ParaStyle>Your final score is {highScore}.</ParaStyle>
             <label>Enter initails:</label>
             <InputStyle
@@ -73,6 +76,9 @@ function Result({ highScore }) {
               }}
             />
             <ButtonStyle onClick={(e) => onSubmit(e)}>Submit</ButtonStyle>
+            <h4 style={{ display: text ? "block" : "none", color: "red" }}>
+              UserName already exist . Please choose another name.
+            </h4>
           </form>
         </Content>
       </Container>
