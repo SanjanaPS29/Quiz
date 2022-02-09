@@ -79,6 +79,7 @@ function Result({ highScore }) {
             <h4 style={{ display: text ? "block" : "none", color: "red" }}>
               UserName already exist . Please choose another name.
             </h4>
+
           </form>
         </Content>
       </Container>
